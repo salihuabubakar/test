@@ -34,17 +34,21 @@ const AddProfileInfo = () => {
 
   useEffect(() => {
     if (message && isAuthenticated) {
-      console.log({ message, isAuthenticated, user });
-
-      if (user?.firstName !== '') {
-        router.push('/overview');
-      } else {
-        toast.success('Profile updated successful');
-        localStorage.setItem('user', JSON.stringify(user));
-        router.push('/add-acct-info');
-      }
+      console.log({ message, isAuthenticated });
+      toast.success('Profile updated successful');
+      localStorage.setItem('user', JSON.stringify({ ...user }));
+      router.push('/add-acct-info');
     }
   }, [message, isAuthenticated, router, user]);
+
+  useEffect(() => {
+    const storedUser = localStorage.getItem("user");
+    console.log({ storedUser })
+    const parsedUser = storedUser ? JSON.parse(storedUser) : null;
+    if (parsedUser?.firstName !== '') {
+      router.push('/overview');
+    }
+  }, []);
   
 
   const handleSubmit =  (e: FormEvent) => {

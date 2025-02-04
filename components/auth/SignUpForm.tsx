@@ -57,7 +57,7 @@ const SignUpForm = () => {
   useEffect(() => {
     if (user && !isAuthenticated) {
       console.log({ message, isAuthenticated });
-
+      localStorage.setItem('user', JSON.stringify(user));
       toast.success('Registration successful! Please verify your email.');
       router.push('/email-verification-info');
     }

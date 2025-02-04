@@ -54,11 +54,12 @@ const SignInForm = () => {
     toast.success(message);
 
     console.log({ user });
+
+    localStorage.setItem('user', JSON.stringify(user));
     
     if (user?.firstName === '') {
       router.push('/add-profile-info');
     } else {
-      localStorage.setItem('user', JSON.stringify(user));
       router.push('/overview');
     }
   }

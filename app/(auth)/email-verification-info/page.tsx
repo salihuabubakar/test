@@ -1,13 +1,14 @@
+'use client'
 import { AuthBg, Logo } from "@/assets";
 import CustomButton from "@/components/shared/CustomButton";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-// import { useAuth } from "@/zustand";
+import { useAuth } from "@/zustand";
 
 const EmailVerificationPage = () => {
-  // const { auth } = useAuth();
-  // const { user } = auth;
+  const { auth } = useAuth();
+  const { user } = auth;
   return (
     <div className="flex  h-screen overflow-y-hidden">
       <div>
@@ -29,7 +30,7 @@ const EmailVerificationPage = () => {
               </h1>
 
               <p className="font-clash text-18">
-                A verification email has been sent to:
+                A verification email has been sent to: { user?.email }
               </p>
             </div>
 

@@ -28,7 +28,7 @@ const SavedInvoicesPage = () => {
 
   useEffect(() => {
     if (typeof window !== "undefined") {
-      const savedInvoices = JSON.parse(localStorage.getItem("invoices") || "[]");
+      const savedInvoices = JSON.parse(localStorage.getItem("savedInvoices") || "[]");
       setInvoices(savedInvoices);
     }
   }, []);
