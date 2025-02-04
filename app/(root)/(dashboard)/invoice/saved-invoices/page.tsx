@@ -17,12 +17,20 @@ import NoDataRecord from '@/components/NoData/noDataRecord';
 const SavedInvoicesPage = () => {
   const router = useRouter();
   const [isPreviewOpen, setIsPreviewOpen] = useState(false);
-  const invoices = getSavedInvoices();
+  // const invoices = getSavedInvoices();
   const [selectedInvoiceData, setSelectedInvoiceData] = useState<any>('');
   const [isClient, setIsClient] = useState(false);
+  const [invoices, setInvoices] = useState([]);
 
   useEffect(() => {
     setIsClient(true);
+  }, []);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const savedInvoices = JSON.parse(localStorage.getItem("invoices") || "[]");
+      setInvoices(savedInvoices);
+    }
   }, []);
 
   const transformedInvoices = invoices.map((invoice: any) => ({
