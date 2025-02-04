@@ -36,11 +36,16 @@ const AddProfileInfo = () => {
     if (message && isAuthenticated) {
       console.log({ message, isAuthenticated, user });
 
-      toast.success('Profile updated successful');
-      localStorage.setItem('user', JSON.stringify(user));
-      router.push('/add-acct-info');
+      if (user?.firstName !== '') {
+        router.push('/overview');
+      } else {
+        toast.success('Profile updated successful');
+        localStorage.setItem('user', JSON.stringify(user));
+        router.push('/add-acct-info');
+      }
     }
   }, [message, isAuthenticated, router, user]);
+  
 
   const handleSubmit =  (e: FormEvent) => {
     e.preventDefault();
